@@ -9,11 +9,6 @@ on:
         type: string
         required: true
         description: The branch, tag or SHA to checkout.
-      enable:
-        type: boolean
-        required: false
-        default: true
-        description: Whether or not to perform the actual deployment. The default value is true, or perform the deployment.
       gcp_project_id:
         type: string
         required: true
@@ -36,7 +31,7 @@ on:
         description: The directory where the source code lives. 
       cloud_run_sa: 
         type: string
-        required: false
+        required: true
         description: The cloudrun attached to this service.  
 jobs:
   deploy: 
@@ -54,8 +49,8 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           token_format: 'access_token'
-          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'     # e.g. - my-service-account@my-project.iam.gserviceaccount.com
+          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/504579259344/locations/global/workloadIdentityPools/github/providers/github-actions
+          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'     # e.g. - tsting@rbadawi-host-vpc.iam.gserviceaccount.com
       # Authenticate Docker to Google Cloud Artifact Registry
       - name: Docker Auth
         id: docker-auth
@@ -91,4 +86,4 @@ jobs:
           envsubst < ./service-yaml/container.yaml > container-${{ inputs.environment }}.yaml       
       - name: Deploy to Cloud Run
         run: |- 
-          gcloud run services replace container-${{ inputs.environment }}.yaml --region=${{ inputs.region }}
+          gcloud run services replace container-${{ inputs.environment }}.yaml --region=${{ inputs.region }} --allow-unauthenticated

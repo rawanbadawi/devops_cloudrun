@@ -1,0 +1,64 @@
+on:
+  push:
+    branches: [dev, qa, main]
+jobs: 
+  #DEV
+  cloudrun-dev:
+    name: deploy cloudrun to dev environment
+    if: ${{ github.ref == 'refs/heads/dev' || github.base_ref == 'dev' }}
+    uses: ./.github/workflows/_deployment.yaml
+    environment: dev
+    permissions: 
+      id-token: write
+      contents: read
+    with: 
+      environment: dev
+      ref: ${{ github.sha }}
+      gcp_project_id: ${{ var.gcp_project_id }}
+      artifact_registry_repo: ${{ var.artifact_repo }}
+      region: ${{ var.region }}
+      service_name: ${{ var.service_name }}
+      code_directory: ${{ var.code_directory }}
+      cloud_run_sa: ${{ var.cloud_run_sa }}
+      serverless_conn_name: ${{ var.serverless_conn_name }}
+    secrets: inherit
+  
+  #QA
+  qa:
+    if: ${{ github.ref == 'refs/heads/qa' || github.base_ref == 'qa' }}
+    uses: ./.github/workflows/_deployment.yaml
+    environment: qa
+    permissions: 
+      id-token: write
+      contents: read
+    with: 
+      environment: qa
+      ref: ${{ github.sha }}
+      gcp_project_id: ${{ var.gcp_project_id }}
+      artifact_registry_repo: ${{ var.artifact_repo }}
+      region: ${{ var.region }}
+      service_name: ${{ var.service_name }}
+      code_directory: ${{ var.code_directory }}
+      cloud_run_sa: ${{ var.cloud_run_sa }}
+      serverless_conn_name: ${{ var.serverless_conn_name }}
+    secrets: inherit
+  
+  #PROD
+  prod: 
+    if: ${{ github.ref == 'refs/heads/main' || github.base_ref == 'main' }}
+    uses: ./.github/workflows/_deployment.yaml
+    environment: prod
+    permissions: 
+      id-token: write
+      contents: read
+    with:
+      environment: prod 
+      ref: ${{ github.sha }}
+      gcp_project_id: ${{ var.gcp_project_id }}
+      artifact_registry_repo: ${{ var.artifact_repo }}
+      region: ${{ var.region }}
+      service_name: ${{ var.service_name }}
+      code_directory: ${{ var.code_directory }}
+      cloud_run_sa: ${{ var.cloud_run_sa }}
+      serverless_conn_name: ${{ var.serverless_conn_name }}
+    secrets: inherit

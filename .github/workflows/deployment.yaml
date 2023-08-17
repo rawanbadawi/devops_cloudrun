@@ -14,13 +14,13 @@ jobs:
     with: 
       environment: dev
       ref: ${{ github.sha }}
-      gcp_project_id: ${{ var.gcp_project_id }}
-      artifact_registry_repo: ${{ var.artifact_repo }}
-      region: ${{ var.region }}
-      service_name: ${{ var.service_name }}
-      code_directory: ${{ var.code_directory }}
-      cloud_run_sa: ${{ var.cloud_run_sa }}
-      serverless_conn_name: ${{ var.serverless_conn_name }}
+      gcp_project_id: ${{ var.gcp_project_id }} 
+      artifact_registry_repo: ${{ var.artifact_repo }} 
+      region: ${{ var.region }} 
+      service_name: ${{ var.service_name }} 
+      code_directory: ${{ var.code_directory }} 
+      cloud_run_sa: ${{ var.cloud_run_sa }} 
+      #serverless_conn_name: ${{ var.serverless_conn_name }}
     secrets: inherit
   
   #QA
@@ -40,7 +40,7 @@ jobs:
       service_name: ${{ var.service_name }}
       code_directory: ${{ var.code_directory }}
       cloud_run_sa: ${{ var.cloud_run_sa }}
-      serverless_conn_name: ${{ var.serverless_conn_name }}
+      #serverless_conn_name: ${{ var.serverless_conn_name }}
     secrets: inherit
   
   #PROD
@@ -60,5 +60,5 @@ jobs:
       service_name: ${{ var.service_name }}
       code_directory: ${{ var.code_directory }}
       cloud_run_sa: ${{ var.cloud_run_sa }}
-      serverless_conn_name: ${{ var.serverless_conn_name }}
+      #serverless_conn_name: ${{ var.serverless_conn_name }}
     secrets: inherit

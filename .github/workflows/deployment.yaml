@@ -13,12 +13,12 @@ jobs:
     with: 
       environment: dev
       ref: ${{ github.sha }}
-      gcp_project_id: ${{ var.gcp_project_id }} 
-      artifact_registry_repo: ${{ var.artifact_repo }} 
-      region: ${{ var.region }} 
-      service_name: ${{ var.service_name }} 
-      code_directory: ${{ var.code_directory }} 
-      cloud_run_sa: ${{ var.cloud_run_sa }} 
+      gcp_project_id: ${{ var.GCP_PROJECT_ID }}
+      artifact_registry_repo: ${{ var.ARTIFACT_REPO }}
+      region: ${{ var.REGION }}
+      service_name: ${{ var.SERVICE_NAME }}
+      code_directory: ${{ var.CODE_DIRECTORY }}
+      cloud_run_sa: ${{ var.CLOUD_RUN_SA }}
       #serverless_conn_name: ${{ var.serverless_conn_name }}
     secrets: inherit
   
@@ -32,12 +32,12 @@ jobs:
     with: 
       environment: qa
       ref: ${{ github.sha }}
-      gcp_project_id: ${{ var.gcp_project_id }}
-      artifact_registry_repo: ${{ var.artifact_repo }}
-      region: ${{ var.region }}
-      service_name: ${{ var.service_name }}
-      code_directory: ${{ var.code_directory }}
-      cloud_run_sa: ${{ var.cloud_run_sa }}
+      gcp_project_id: ${{ var.GCP_PROJECT_ID }}
+      artifact_registry_repo: ${{ var.ARTIFACT_REPO }}
+      region: ${{ var.REGION }}
+      service_name: ${{ var.SERVICE_NAME }}
+      code_directory: ${{ var.CODE_DIRECTORY }}
+      cloud_run_sa: ${{ var.CLOUD_RUN_SA }}
       #serverless_conn_name: ${{ var.serverless_conn_name }}
     secrets: inherit
   
@@ -51,11 +51,11 @@ jobs:
     with:
       environment: prod 
       ref: ${{ github.sha }}
-      gcp_project_id: ${{ var.gcp_project_id }}
-      artifact_registry_repo: ${{ var.artifact_repo }}
-      region: ${{ var.region }}
-      service_name: ${{ var.service_name }}
-      code_directory: ${{ var.code_directory }}
-      cloud_run_sa: ${{ var.cloud_run_sa }}
+      gcp_project_id: ${{ var.GCP_PROJECT_ID }}
+      artifact_registry_repo: ${{ var.ARTIFACT_REPO }}
+      region: ${{ var.REGION }}
+      service_name: ${{ var.SERVICE_NAME }}
+      code_directory: ${{ var.CODE_DIRECTORY }}
+      cloud_run_sa: ${{ var.CLOUD_RUN_SA }}
       #serverless_conn_name: ${{ var.serverless_conn_name }}
     secrets: inherit

@@ -45,13 +45,8 @@ jobs:
           context: ${{ vars.code_directory }}
           push: true 
           tags: |
-            ${{ vars.REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}${{ vars.ARTIFACT_REPO }}/${{ vars.SERVICE_NAME }}:${{ inputs.ref }}
-            ${{ vars.REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}${{ vars.ARTIFACT_REPO }}/${{ vars.SERVICE_NAME }}:latest
-      
-      - name: Docker Push
-        run: |-
-          docker push "${{ vars.REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.ARTIFACT_REPO }}/${{ vars.SERVICE_NAME }}:${{ inputs.ref }}"
-          docker push "${{ vars.REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.ARTIFACT_REPO }}/${{ vars.SERVICE_NAME }}:latest"
+            ${{ vars.REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.ARTIFACT_REPO }}/${{ vars.SERVICE_NAME }}:${{ inputs.ref }}
+            ${{ vars.REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.ARTIFACT_REPO }}/${{ vars.SERVICE_NAME }}:latest
 
       - name: Create Service declaration   
         run: |-
@@ -61,7 +56,8 @@ jobs:
           export REVISION_TAG="${{ inputs.ref }}"
           export CLOUD_RUN_SA="${{ vars.CLOUD_RUN_SA }}"
           export ENVIRONMENT="${{ inputs.environment }}"
-          envsubst < ./service-yaml/container.yaml > container-${{ inputs.environment }}.yaml       
+          envsubst < ./service-yaml/container.yaml > container-${{ inputs.environment }}.yaml
+          cat container-${{ inputs.environment }}.yaml       
       - name: Deploy to Cloud Run
         run: |- 
           gcloud run services replace container-${{ inputs.environment }}.yaml --REGION=${{ vars.REGION }} --allow-unauthenticated

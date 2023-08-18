@@ -60,11 +60,11 @@ jobs:
           cat container-${{ inputs.environment }}.yaml       
       - name: Deploy to Cloud Run
         run: |- 
-          gcloud run services replace container-${{ inputs.environment }}.yaml --region=${{ vars.REGION }}
+          gcloud run services replace container-${{ inputs.environment }}.yaml --region=${{ vars.REGION }} --project=${{ vars.GCP_PROJECT_ID }} 
       - name: Set policy allow unauthenticated
         if: ${{ vars.ALLOW_UNAUTHENTICATED == 'yes' }}
         run: |-
-          gcloud run services set-iam-policy ${{ vars.SERVICE_NAME }} policy.yaml
+          gcloud run services set-iam-policy ${{ vars.SERVICE_NAME }} policy.yaml --project=${{ vars.GCP_PROJECT_ID }}
 
 
         

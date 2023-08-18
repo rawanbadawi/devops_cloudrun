@@ -1,6 +1,6 @@
 on:
   workflow_call:
-    var:
+    inputs:
       environment:
         type: string
         required: true

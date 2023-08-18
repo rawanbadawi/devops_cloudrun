@@ -1,5 +1,6 @@
 # test_hello.py
 from main import app
+import os
 
 def test_main():
     os.environ["ENVIRONMENT"] = "dev"

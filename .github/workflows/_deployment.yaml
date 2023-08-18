@@ -64,7 +64,7 @@ jobs:
       - name: Set policy allow unauthenticated
         if: ${{ vars.ALLOW_UNAUTHENTICATED == 'yes' }}
         run: |-
-        gcloud run services set-iam-policy ${{ vars.SERVICE_NAME }} policy.yaml
+          gcloud run services set-iam-policy ${{ vars.SERVICE_NAME }} policy.yaml
 
 
         

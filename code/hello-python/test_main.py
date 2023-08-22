@@ -1,4 +1,4 @@
-# test_hello.py
+# This is how you can test your flask application.
 from main import app
 import os
 

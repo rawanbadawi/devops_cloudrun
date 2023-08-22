@@ -10,7 +10,7 @@ spec:
     metadata:      
       name: ${SERVICE_NAME}-${REVISION_TAG} 
       annotations:
-        run.googleapis.com/execution-environment: gen1
+        run.googleapis.com/execution-environment: gen2
         #run.googleapis.com/vpc-access-egress: all-traffic
         #run.googleapis.com/vpc-access-connector: projects/${PROJECT_ID}/locations/${REGION}/connectors/${SERVERLESS_CONNECTOR}
         autoscaling.knative.dev/minScale: '3'

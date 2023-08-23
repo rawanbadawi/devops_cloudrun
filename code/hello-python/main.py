@@ -25,7 +25,7 @@ app = Flask(__name__)
 def hello_world():
     """Example Hello World route."""
     name = os.environ.get("ENVIRONMENT")
-    return f"Hello {name}!"
+    return f"Hello, {name}!"
 
 
 if __name__ == "__main__":

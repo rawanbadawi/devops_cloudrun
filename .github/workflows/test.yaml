@@ -6,7 +6,7 @@ jobs:
   #DEV
   dev:
     if: ${{ github.ref == 'refs/heads/dev' || github.base_ref == 'dev' }}
-    uses: ./.github/workflows/_test.yaml
+    uses: ./.github/workflows/_context.yaml
     permissions: 
       id-token: write
       contents: read
@@ -16,7 +16,7 @@ jobs:
   #QA
   qa:
     if: ${{ github.ref == 'refs/heads/qa' || github.base_ref == 'qa' }}
-    uses: ./.github/workflows/_test.yaml
+    uses: ./.github/workflows/_context.yaml
     permissions: 
       id-token: write
       contents: read
@@ -28,7 +28,7 @@ jobs:
   #PROD
   prod: 
     if: ${{ github.ref == 'refs/heads/main' || github.base_ref == 'main' }}
-    uses: ./.github/workflows/_test.yaml
+    uses: ./.github/workflows/_context.yaml
     permissions: 
       id-token: write
       contents: read

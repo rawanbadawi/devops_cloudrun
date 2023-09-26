@@ -18,6 +18,10 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Google Auth
